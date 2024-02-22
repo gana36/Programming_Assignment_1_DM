@@ -96,8 +96,8 @@ class Section3:
         for k in range(1, 6):
             y_test_proba = clf.predict_proba(Xtest)
             test_scores[k] = top_k_accuracy_score(ytest, y_test_proba, k=k)
-        answer['score_train']=cv_scores
-        answer['score_test']=test_scores
+        #answer['score_train']=cv_scores
+        #answer['score_test']=test_scores
         answer['clf']=clf
         tup_train=[]
         tup_test=[]
@@ -111,8 +111,8 @@ class Section3:
         answer['text_rate_accuracy_change']=''
         answer['text_is_topk_useful_and_why']='Yes indeed'
         for i in cv_scores.keys():
-           if i not in answer:
-              answer[i]={cv_scores[i],test_scores[i]}
+            if i not in answer:
+                answer[i]={cv_scores[i],test_scores[i]}
         #print('Part A answer boi')
         #As the k increases the rate of accuracy change also increases in positive direction
         #print(answer)
