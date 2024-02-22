@@ -110,6 +110,9 @@ class Section3:
         answer['plot_k_vs_score_test']=tup_test
         answer['text_rate_accuracy_change']=''
         answer['text_is_topk_useful_and_why']='Yes indeed'
+        for i in cv_scores.keys():
+           if i not in answer:
+              answer[i]={cv_scores[i],test_scores[i]}
         #print('Part A answer boi')
         #As the k increases the rate of accuracy change also increases in positive direction
         #print(answer)
