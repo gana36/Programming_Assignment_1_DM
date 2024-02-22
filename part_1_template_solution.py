@@ -255,7 +255,8 @@ class Section1:
         # Answer: same structure as partC, except for the key 'explain_kfold_vs_shuffle_split'
         answer_dc = {}
         answer["clf_DT"] = clf_dc  # the estimator (classifier instance)
-        answer["cv"] = cv  # the cross validator instance
+        answer["cv_RF"] = cv  # the cross validator instance
+        answer["cv_DT"] = cv
         # the dictionary with the scores  (a dictionary with
         # keys: 'mean_fit_time', 'std)_fit_time', 'mean_accuracy', 'std_accuracy'.
         scores_dc={}
