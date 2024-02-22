@@ -212,7 +212,9 @@ class Section1:
             scores['mean_accuracy']=np.mean(results['test_score'])
             scores['std_accuracy']=np.std(results['test_score'])
             answer["scores"] = scores
-            #answer["explain_kfold_vs_shuffle_split"] = 'As we move from 2 splits to 5 splits the mean and std of accuracy increased, but from 5 to 8 folds, there is decrease in both measures, and again from 8 to 16 folds there is sligh increase in mean accuracy, on contrast there's a decrease in std accuracy from 8 to 16.'
+            """Observation:
+            As we move from 2 splits to 5 splits the mean and std of accuracy increased, but from 5 to 8 folds, there is decrease in both measures, and again from 8 to 16 folds there is sligh increase in mean accuracy, on contrast there's a decrease in std accuracy from 8 to 16.'
+            """
             answer_1[k]=answer
  
  
