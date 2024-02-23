@@ -127,13 +127,13 @@ if __name__ == "__main__":
     answer3B, X_bin, y_bin, Xtest_bin, ytest_bin = part_B(
         part3, Xtrain, ytrain, Xtest, ytest
     )
-    #answer3C = part_C(part3, X_bin, y_bin, Xtest_bin, ytest_bin)
+    answer3C = part_C(part3, X_bin, y_bin, Xtest_bin, ytest_bin)
     answer3D = part_D(part3, X_bin, y_bin, Xtest_bin, ytest_bin)
 
     answer = {}
     answer["3A"] = answer3A
     answer["3B"] = answer3B
-    #answer["3C"] = answer3C
+    answer["3C"] = answer3C
     answer["3D"] = answer3D
     #print(
     # print(analyze_class_distribution(part3,y=ytrain))
