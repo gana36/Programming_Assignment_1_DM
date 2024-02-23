@@ -95,7 +95,7 @@ class Section1:
         nu.scale(Xtest)
         nu.checklabels(y)
         nu.checklabels(ytest)
-        #print(type(y))
+    
         answer = {}
 
         # Enter your code and fill the `answer` dictionary
@@ -106,9 +106,6 @@ class Section1:
         answer["length_ytest"] = len(ytest)
         answer["max_Xtrain"] = np.max(Xtrain)
         answer["max_Xtest"] = np.max(Xtest)
-        # print('thrhieir',np.max(Xtrain))
-        # print(len(Xtrain))
-        # print(len(Xtest))
         return answer, Xtrain, ytrain, Xtest, ytest
 
     """
@@ -134,14 +131,13 @@ class Section1:
         answer["clf"] = clf  # the estimator (classifier instance)
         answer["cv"] = cv  # the cross validator instance
         # the dictionary with the scores  (a dictionary with
-        # keys: 'mean_fit_time', 'std)_fit_time', 'mean_accuracy', 'std_accuracy'.
+        # keys: 'mean_fit_time', 'std_fit_time', 'mean_accuracy', 'std_accuracy'.
         scores={}
         scores['mean_fit_time']=np.mean(results['fit_time'])
         scores['std_fit_time']=np.std(results['fit_time'])
         scores['mean_accuracy']=np.mean(results['test_score'])
         scores['std_accuracy']=np.std(results['test_score'])
         answer["scores"] = scores
-        #print(answer)
         return answer
 
     # ---------------------------------------------------------
@@ -174,7 +170,7 @@ class Section1:
         scores['std_accuracy']=np.std(results['test_score'])
         answer["scores"] = scores
         answer["explain_kfold_vs_shuffle_split"] = "Pros of Shuffle Shift:- We decide to what size the data is splitted into training and test sets, Gives better generalizaion, as it randomly selects samples for training and testing. Downsides of ShuffleSplit:- Variance, the randomness can often lead to a high variance. Also it doesn't implicilty preserve the training and testing samples, this leads to model train on imbalanced dataset. Pros of Using KFold CV:- Uses all the data/ observations for both training and testing. unlike shuffle split doesn't guarantee, Also Model Stability due to use of entire set. Negative sides of K Fold:- It consumes lot of resources to compute, also its not as flexible as Shuffle split(kfold doesn't provide us with the option to determine what ratio needs to be splitted for training and testing)"
-        #print(answer)
+
         return answer
 
     # ----------------------------------------------------------------------
@@ -222,7 +218,6 @@ class Section1:
 
         # Enter your code, construct the `answer` dictionary, and return it.
         answer=answer_1
-        #print(answer)
         return answer
 
     # ----------------------------------------------------------------------
@@ -267,7 +262,7 @@ class Section1:
         scores_dc['mean_accuracy']=np.mean(results_dc['test_score'])
         scores_dc['std_accuracy']=np.std(results_dc['test_score'])
         answer["scores_DT"] = scores_dc
-        #scores_dc["explain_kfold_vs_shuffle_split"] = 'Ok this is for Just testing purpose'
+  
 
         #answer_rf = {}
         answer["clf_RF"] = clf_rf  # the estimator (classifier instance)
@@ -317,10 +312,7 @@ class Section1:
             "model_lowest_variance" (float)
             "model_fastest" (float)
         """
-        # print('Bruh')
-        # print(answer)
-        #answer[]
-        return answer
+          return answer
 
     # ----------------------------------------------------------------------
     """
@@ -394,8 +386,8 @@ class Section1:
         conf_matrix_test_orig = confusion_matrix(ytest, y_test_pred_orig)
 
         # Accuracies
-        accuracy_train_orig = nu.accuracy(conf_matrix_train_orig)#accuracy_score(y, y_train_pred_orig)
-        accuracy_test_orig = nu.accuracy(conf_matrix_test_orig)#accuracy_score(ytest, y_test_pred_orig)
+        accuracy_train_orig = nu.accuracy(conf_matrix_train_orig)
+        accuracy_test_orig = nu.accuracy(conf_matrix_test_orig)
 
 # Initialize GridSearchCV
         grid_search = GridSearchCV(estimator=rf, param_grid=param_grid, cv=cv, scoring='accuracy')
@@ -404,11 +396,6 @@ class Section1:
         grid_search.fit(X, y)
         best_clf = grid_search.best_estimator_
         accuracy = best_clf.score(Xtest,ytest)
-        # print('%'*20)
-        # print(best_clf)
-        # Predictions with the optimized model
-        # y_train_pred_best = best_clf.predict(X)
-        # y_test_pred_best = best_clf.predict(Xtest)
 
         mean_test_scores = grid_search.cv_results_['mean_test_score']
         # Calculate the mean accuracy
@@ -417,17 +404,13 @@ class Section1:
         #best_rf_clf.fit(X,y)
         y_train_pred_best = best_rf_clf.predict(X)
         y_test_pred_best = best_rf_clf.predict(Xtest)
-
-        # y_train_pred_best = best_clf.predict(X)
-        # y_test_pred_best = best_clf.predict(Xtest)
-
-        # Confusion matrices
+       # Confusion matrices
         conf_matrix_train_best = confusion_matrix(y, y_train_pred_best)
         conf_matrix_test_best = confusion_matrix(ytest, y_test_pred_best)
 
         # Accuracies
-        accuracy_train_best = nu.accuracy(conf_matrix_train_best) #accuracy_score(y, y_train_pred_best)
-        accuracy_test_best = nu.accuracy(conf_matrix_test_best) #accuracy_score(ytest, y_test_pred_best)
+        accuracy_train_best = nu.accuracy(conf_matrix_train_best)
+        accuracy_test_best = nu.accuracy(conf_matrix_test_best) 
 
 
         answer = {
