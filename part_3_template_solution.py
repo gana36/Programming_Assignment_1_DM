@@ -80,14 +80,14 @@ class Section3:
         answer = {}
         clf=LogisticRegression(random_state=self.seed,max_iter=300)
         cv=ShuffleSplit(n_splits=5,random_state=self.seed)
-# Placeholder for CV scores
+
         cv_scores = {k: [] for k in range(1, 6)}
-        # Placeholder for test set scores
+
         test_scores = {k: None for k in range(1, 6)}
-        # Define custom scorer function to calculate top-k accuracy
+
         def top_k_accuracy_scorer(k):
             return make_scorer(top_k_accuracy_score, needs_proba=True, k=k)
-        # Calculate CV scores for k=1 to 5
+
         for k in range(1, 6):
             cv_score = cross_val_score(clf, Xtrain, ytrain, cv=cv, scoring=top_k_accuracy_scorer(k))
             cv_scores[k] = cv_score.mean()
@@ -113,10 +113,7 @@ class Section3:
         for i in cv_scores.keys():
             if i not in answer:
                 answer[i]={"score_train":cv_scores[i],"score_test":test_scores[i]}
-        #print('Part A answer boi')
-        #As the k increases the rate of accuracy change also increases in positive direction
-        #print(answer)
-
+   
         """
         # `answer` is a dictionary with the following keys:
         - integers for each topk (1,2,3,4,5)
@@ -170,7 +167,6 @@ class Section3:
         Xtest,ytest=nu.convert_7_0(Xtest,ytest)
         X,y=nu.convert_9_1(X,y)
         Xtest,ytest=nu.convert_9_1(Xtest,ytest)
-        # print('Part B frpm Question 3')
         uniq, counts_class = np.unique(y, return_counts=True)
         uniq2,counts_class_test=np.unique(ytest,return_counts=True)      
         answer["length_Xtrain"] = len(X)  # Number of samples
@@ -179,8 +175,6 @@ class Section3:
         answer["length_ytest"] = len(ytest)
         answer["max_Xtrain"] = np.max(X)
         answer["max_Xtest"] = np.max(Xtest)
-        # print(answer)
-        # print('*'*30)
         return answer, X, y, Xtest, ytest
 
     # --------------------------------------------------------------------------
@@ -201,12 +195,9 @@ class Section3:
         ytest: NDArray[np.int32],
     ) -> dict[str, Any]:
         """"""
-        # print()
-        # print('Part C')
         answer={}
         clf=SVC(random_state=self.seed,kernel='linear')
         cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=self.seed)
-        #print('Done caas')
         scoring = {'f1': make_scorer(f1_score, average='macro'),
            'precision': make_scorer(precision_score, average='macro'),
            'recall': make_scorer(recall_score, average='macro'),
@@ -229,7 +220,7 @@ class Section3:
             answer["is_precision_higher_than_recall"]=1
         else:
             answer["is_precision_higher_than_recall"]=0
-        answer['explain_is_precision_higher_than_recall']='Testing purpose'
+        answer['explain_is_precision_higher_than_recall']="No its not, well the model is effective at identifying the most of the positive cases(0's as 0's) and (1's as 1's) but at the cost of incorrectly classifying many negative cases as positive(0's as 1's) and (1's as 0's)"
         clf.fit(X,y)
         y_pred_train=clf.predict(X)
         answer['confusion_matrix_train']=confusion_matrix(y_pred_train,y)
@@ -255,8 +246,6 @@ class Section3:
         - "std_precision" : the std precision
         - "std_f1" : the std f1
         """
-        # print("Part C answer")
-        # print(answer)
         return answer
 
     # --------------------------------------------------------------------------
@@ -334,8 +323,5 @@ class Section3:
 
         Recall: The scores are based on the results of the cross-validation step
         """
-        # print('*'*30)
-        # print('Part D answer')
-        # print('*'*30)
-        # print(answer)
+
         return answer
